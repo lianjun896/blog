@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+    <!-- 复用原登录样式和博客样式 -->
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- 第一部分：登录界面（默认显示）                                 -->
+    <!-- ============================================================ -->
+    <div id="loginSection">
+        <div class="Yl">
+            <h2 class="sub-title">hello Yl</h2>
+            <p class="bless-text">请登录后进入留言板</p>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <input type="text" id="loginUsername" placeholder="账号" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" placeholder="密码" autocomplete="current-password" required>
+                </div>
+                <p id="errorMsg" class="error-msg"></p>
+                <button type="submit" class="jump-btn">登 录</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 第二部分：博客界面（默认隐藏，登录成功后显示）                  -->
+    <!-- ============================================================ -->
+    <div id="blogSection" style="display:none">
+
+        <div class="container">
+            <!-- 电脑端左侧：输入区 -->
+            <div class="input-panel">
+                <h2 class="panel-title">写点什么</h2>
+                <div class="form-row">
+                    <input type="text" id="blogUsername" class="username-input" placeholder="你的名字" maxlength="20">
+                </div>
+                <div class="form-row">
+                    <textarea id="inputText" class="content-input" placeholder="输入想要输入的文字..." rows="8"></textarea>
+                </div>
+                <button id="saveBtn" class="save-btn">保 存</button>
+            </div>
+            <!-- 右侧：留言栏 -->
+            <div class="message-panel">
+                <h2 class="panel-title">留言栏</h2>
+                <div id="messageList" class="message-list"></div>
+            </div>
+        </div>
+
+        <!-- 手机端左下角悬浮加号按钮 -->
+        <button class="fab" id="fabBtn" title="写留言">+</button>
+
+        <!-- 手机端悬浮输入框 -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <h3 class="modal-title">写点什么</h3>
+                <input type="text" id="modalUsername" class="modal-username" placeholder="你的名字" maxlength="20">
+                <textarea id="modalInput" class="modal-textarea" placeholder="输入想要输入的文字..." rows="5"></textarea>
+                <div class="modal-btns">
+                    <button id="modalCloseBtn" class="close-btn">取消</button>
+                    <button id="modalSaveBtn" class="save-btn">保 存</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 保存后：显示 messages.json 并自动复制 -->
+        <div class="modal" id="jsonModal">
+            <div class="modal-content json-modal-content">
+                <h3 class="modal-title">messages.json 已更新</h3>
+                <p class="json-tip">已自动复制到剪贴板，将下面内容完整粘贴到 <b>messages.json</b> 文件即可永久保存</p>
+                <textarea id="jsonOutput" class="json-output" readonly></textarea>
+                <p id="copyStatus" class="copy-status"></p>
+                <div class="modal-btns">
+                    <button id="jsonCopyBtn" class="save-btn">重新复制</button>
+                    <button id="jsonCloseBtn" class="close-btn">关闭</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

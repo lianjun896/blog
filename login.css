@@ -1,0 +1,103 @@
+/* ============================================================
+   login.css —— 登录页样式
+   基于原项目 Yl2.css 风格，仅新增表单相关样式，其余尽量保持一致
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* 页面背景图，与原项目一致，使用 text.jpg */
+body {
+    min-height: 100vh;
+    background: url("text.jpg") center/cover no-repeat fixed;
+}
+/* 半透明悬浮卡片核心样式（与 Yl2.css 完全一致） */
+.Yl {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: min(92%, 540px);
+    padding: 45px 35px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+/* 标题样式（与 Yl2.css 完全一致） */
+.sub-title {
+    font-size: 28px;
+    color: #13c13e;
+    margin-bottom: 26px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+/* 祝福文案（与 Yl2.css 完全一致） */
+.bless-text {
+    font-size: 17px;
+    line-height: 1.9;
+    color: #bd3636;
+    margin-bottom: 22px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+/* ========== 以下为登录表单新增样式 ========== */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+}
+.form-group {
+    width: 100%;
+    max-width: 320px;
+}
+.form-group input {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 16px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.35);
+    color: #333;
+    outline: none;
+    transition: 0.3s all ease;
+}
+.form-group input::placeholder {
+    color: rgba(0,0,0,0.45);
+}
+.form-group input:focus {
+    background: rgba(255,255,255,0.6);
+    border-color: rgba(78, 36, 149, 0.7);
+    box-shadow: 0 0 0 3px rgba(78, 36, 149, 0.15);
+}
+/* 错误提示 */
+.error-msg {
+    font-size: 14px;
+    color: #c31d1d;
+    min-height: 20px;
+    margin: -6px 0;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+}
+/* 登录按钮（沿用原 jump-btn 样式，改为 button 元素） */
+.jump-btn {
+    display: inline-block;
+    padding: 13px 48px;
+    background: rgba(78, 36, 149, 0.7);
+    color: #c6a419;
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 16px;
+    transition: 0.3s all ease;
+    border: 1px solid rgba(255,255,255,0.4);
+    cursor: pointer;
+}
+.jump-btn:hover {
+    background: rgba(182, 12, 12, 0.958);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgb(222, 4, 4);
+}

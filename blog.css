@@ -1,0 +1,342 @@
+/* ============================================================
+   blog.css —— 留言板样式
+   基于原仓库 Yl2.css 磨砂玻璃风格，响应式左右分栏
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* 页面背景图，与原项目一致 */
+body {
+    min-height: 100vh;
+    background: url("text.jpg") center/cover no-repeat fixed;
+    font-family: "Microsoft Yahei", sans-serif;
+}
+
+/* ========== 容器：电脑端左右分栏 ========== */
+.container {
+    display: flex;
+    gap: 24px;
+    padding: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: 100vh;
+    align-items: flex-start;
+}
+
+/* ========== 通用磨砂玻璃面板 ========== */
+.input-panel,
+.message-panel {
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 28px 24px;
+}
+
+/* 左侧输入区 */
+.input-panel {
+    flex: 0 0 360px;
+    position: sticky;
+    top: 30px;
+}
+
+/* 右侧留言栏 */
+.message-panel {
+    flex: 1;
+    min-height: 400px;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+/* 面板标题（沿用原 sub-title 绿色风格） */
+.panel-title {
+    font-size: 24px;
+    color: #13c13e;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* ========== 输入区样式 ========== */
+.form-row {
+    margin-bottom: 14px;
+}
+.username-input,
+.content-input {
+    width: 100%;
+    padding: 11px 16px;
+    font-size: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.35);
+    color: #333;
+    outline: none;
+    transition: 0.3s all ease;
+    font-family: inherit;
+}
+.username-input {
+    border-radius: 999px;
+}
+.content-input {
+    resize: vertical;
+    min-height: 160px;
+    line-height: 1.6;
+}
+.username-input::placeholder,
+.content-input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+.username-input:focus,
+.content-input:focus {
+    background: rgba(255, 255, 255, 0.55);
+    border-color: rgba(78, 36, 149, 0.7);
+    box-shadow: 0 0 0 3px rgba(78, 36, 149, 0.15);
+}
+
+/* 保存按钮（沿用原 jump-btn 风格） */
+.save-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 36px;
+    background: rgba(78, 36, 149, 0.7);
+    color: #c6a419;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+.save-btn:hover {
+    background: rgba(182, 12, 12, 0.958);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgb(222, 4, 4);
+}
+
+/* ========== 留言列表 ========== */
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.message-item {
+    background: rgba(255, 255, 255, 0.32);
+    border-radius: 14px;
+    padding: 16px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: msgFadeIn 0.4s ease;
+}
+@keyframes msgFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+/* 留言头部：左上角用户名 + 时间 */
+.message-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+.message-username {
+    font-size: 15px;
+    font-weight: bold;
+    color: #4e2495;
+    background: rgba(78, 36, 149, 0.12);
+    padding: 2px 10px;
+    border-radius: 999px;
+}
+.message-time {
+    font-size: 12px;
+    color: #777;
+}
+/* 留言内容 */
+.message-content {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.7;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+/* 空状态提示 */
+.empty-tip {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.4);
+    padding: 50px 0;
+    font-size: 15px;
+}
+
+/* ========== 手机端左下角悬浮加号按钮 ========== */
+.fab {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(78, 36, 149, 0.85);
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    transition: 0.3s all ease;
+}
+.fab:hover {
+    background: rgba(182, 12, 12, 0.958);
+    transform: scale(1.1);
+}
+
+/* ========== 手机端悬浮输入弹窗 ========== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.modal.active {
+    display: flex;
+}
+.modal-content {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 24px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    animation: modalFadeIn 0.3s ease;
+}
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+.modal-title {
+    font-size: 20px;
+    color: #13c13e;
+    text-align: center;
+    margin-bottom: 16px;
+}
+.modal-username {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 999px;
+    outline: none;
+    margin-bottom: 12px;
+    font-family: inherit;
+}
+.modal-username:focus {
+    border-color: rgba(78, 36, 149, 0.7);
+}
+.modal-textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    resize: vertical;
+    outline: none;
+    font-family: inherit;
+    line-height: 1.6;
+}
+.modal-textarea:focus {
+    border-color: rgba(78, 36, 149, 0.7);
+}
+.modal-btns {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+}
+.modal-btns .save-btn {
+    flex: 1;
+}
+.close-btn {
+    flex: 1;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.08);
+    color: #666;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 999px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.close-btn:hover {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+/* ========== JSON 输出弹窗（保存后显示完整 messages.json） ========== */
+.json-modal-content {
+    max-width: 560px;
+}
+.json-tip {
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+.json-tip b {
+    color: #4e2495;
+}
+.json-output {
+    width: 100%;
+    min-height: 200px;
+    max-height: 320px;
+    padding: 12px;
+    font-size: 13px;
+    font-family: "Consolas", "Monaco", monospace;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #f7f7f7;
+    color: #333;
+    resize: vertical;
+    outline: none;
+    line-height: 1.5;
+    white-space: pre;
+    overflow: auto;
+}
+.copy-status {
+    text-align: center;
+    font-size: 13px;
+    color: #13c13e;
+    margin-top: 10px;
+    min-height: 18px;
+}
+.copy-status.error {
+    color: #c31d1d;
+}
+
+/* ========== 响应式：手机端 ========== */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 16px;
+        gap: 16px;
+    }
+    /* 手机端隐藏左侧输入区，改用悬浮加号 */
+    .input-panel {
+        display: none;
+    }
+    .message-panel {
+        max-height: none;
+        min-height: auto;
+    }
+    .fab {
+        display: block;
+    }
+}
