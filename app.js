@@ -145,18 +145,18 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-/* 读取 localStorage 中新增的留言 */
+/* 读取 sessionStorage 中新增的留言（会话级缓存） */
 function getLocalMessages() {
     try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        return JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '[]');
     } catch (e) { return []; }
 }
 
-/* 保存新增留言到 localStorage */
+/* 保存新增留言到 sessionStorage */
 function saveLocalMessage(msg) {
     const list = getLocalMessages();
     list.unshift(msg);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(list));
 }
 
 /* 加载留言：读取 messages.json + 合并本地新增（去重） */
